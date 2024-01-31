@@ -4,15 +4,13 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FilmesApi.Models;
+namespace FilmesApi.Data.Dtos;
 
-public class Filme
+public class CreateFilmeDto
 {
-    [Key]
-    [Required]
-    public int Id { get; set; }
 
     [Required(ErrorMessage = "O campo título é obrigatório")]
+    [StringLength(25, ErrorMessage = "O campo título não pode passar de 25 caracteres")]
     public string Titulo { get; set; }
 
     [Required(ErrorMessage = "O campo genero é obrigatório")]
