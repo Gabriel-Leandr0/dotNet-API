@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var connectionString = builder.Configuration.GetConnectionString("FilmeConnection");
-
+//Inicia a conexão com o banco de dados
 builder.Services.AddDbContext<FilmeContext>(options =>
- options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+ options.UseSqlServer(builder.Configuration.GetConnectionString("FilmeConnection")));
+
 
 // Add services to the container.
 
