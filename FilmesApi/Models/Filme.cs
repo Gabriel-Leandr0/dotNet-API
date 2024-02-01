@@ -8,18 +8,20 @@ namespace FilmesApi.Models;
 
 public class Filme
 {
+    //Regras de validação para camada de dados
+
     [Key]
     [Required]
     public int Id { get; set; }
 
-    [Required(ErrorMessage = "O campo título é obrigatório")]
+    [Required]
+    [MaxLength(25)]
     public string Titulo { get; set; }
 
-    [Required(ErrorMessage = "O campo genero é obrigatório")]
+    [Required]
     public string Genero { get; set; }
 
-    [Required(ErrorMessage = "O campo duração é obrigatório")]
-    [Range(60, 300, ErrorMessage = "A duração deve ter no mínimo 60 e no máximo 300 minutos")]
+    [Required]
     public int duracao { get; set; }
 
 }

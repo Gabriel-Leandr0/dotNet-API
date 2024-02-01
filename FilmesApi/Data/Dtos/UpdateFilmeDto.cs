@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FilmesApi.Data.Dtos;
 
-public class CreateFilmeDto
+public class UpdateFilmeDto
 {
     //Regras de validação para camada controller
     
