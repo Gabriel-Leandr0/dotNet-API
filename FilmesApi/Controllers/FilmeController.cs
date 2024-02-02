@@ -23,6 +23,8 @@ public class FilmeController : ControllerBase
     
 
     [HttpPost]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public IActionResult AdicionaFilme(CreateFilmeDto createFilmeDto)
     {
         //mapper serve para mapear um objeto para outro objeto (createFilmeDto para Filme)
@@ -38,12 +40,16 @@ public class FilmeController : ControllerBase
     }
 
     [HttpGet]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public IEnumerable<ReadFilmeDto> RecuperaFilmes([FromQuery] int skip = 0, [FromQuery] int take = 10)
     {
         return _mapper.Map<IEnumerable<ReadFilmeDto>>(_context.Filmes.Skip(skip).Take(take));
     }
 
     [HttpGet("{id}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]    
     public IActionResult RecuperaFilmesPorId(int id)
     {
         var filme = _context.Filmes.FirstOrDefault(filme => filme.Id == id);
@@ -53,6 +59,8 @@ public class FilmeController : ControllerBase
     }
 
     [HttpGet("titulo")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public IEnumerable<ReadFilmeDto> RecuperaFilmesPorTitulo([FromQuery] string titulo)
     {
         return _mapper.Map<IEnumerable<ReadFilmeDto>>
@@ -60,6 +68,8 @@ public class FilmeController : ControllerBase
     }
 
     [HttpPut("{id}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public IActionResult AtualizaFilme(int id, UpdateFilmeDto updateFilmeDto)
     {
         var filme = _context.Filmes.FirstOrDefault(filme => filme.Id == id);
@@ -70,6 +80,8 @@ public class FilmeController : ControllerBase
     }
 
     [HttpPatch("{id}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public IActionResult AtualizaParcialFilme(int id, JsonPatchDocument<UpdateFilmeDto> patchFilme)
     {
         //JsonPatchDocument serve para atualizar parcialmente um objeto
@@ -89,6 +101,8 @@ public class FilmeController : ControllerBase
     }
 
     [HttpDelete("{id}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public IActionResult DeletaFilme(int id)
     {
         var filme = _context.Filmes.FirstOrDefault(filme => filme.Id == id);
