@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using FilmesApi.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,5 +11,6 @@ public class FilmeContext : DbContext
     }
     //Modelo de dados (Model)
     public DbSet<Filme> Filmes { get; set; }
-    
+    public DbSet<Cinema> Cinemas { get; set; }
+
 }
