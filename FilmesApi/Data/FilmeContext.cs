@@ -12,5 +12,6 @@ public class FilmeContext : DbContext
     //Modelo de dados (Model)
     public DbSet<Filme> Filmes { get; set; }
     public DbSet<Cinema> Cinemas { get; set; }
+    public DbSet<Endereco> Enderecos { get; set; }
 
 }
