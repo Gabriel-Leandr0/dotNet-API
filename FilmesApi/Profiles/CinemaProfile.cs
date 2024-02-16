@@ -9,7 +9,12 @@ public class CinemaProfile : Profile
     //Constructor
     public CinemaProfile()
     {
-        CreateMap<Cinema, ReadCinemaDto>();
+        // Profile serve para mapear um objeto para outro
+            // - CreateMap<ClasseOrigem, ClasseDestino>()
+            // - ForMember(destino => destino.Propriedade, origem => origem.Propriedade)
+        CreateMap<Cinema, ReadCinemaDto>()
+            .ForMember(ReadCinemaDto => ReadCinemaDto.Endereco, 
+                opt => opt.MapFrom(Cinema => Cinema.Endereco));
         CreateMap<CreateCinemaDto, Cinema>();
         CreateMap<UpdateCinemaDto, Cinema>();
     }

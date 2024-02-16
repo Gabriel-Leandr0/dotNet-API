@@ -6,8 +6,9 @@ var builder = WebApplication.CreateBuilder(args);
 //--------------------------------------------------------------------------------------------
 
 //Inicia a conexão com o banco de dados
+    //-UseLazyLoadingProxies() serve para carregar os dados relacionados (campos virtuais) de forma preguiçosa
 builder.Services.AddDbContext<FilmeContext>(options =>
- options.UseSqlServer(builder.Configuration.GetConnectionString("FilmeConnection")));
+ options.UseLazyLoadingProxies().UseSqlServer(builder.Configuration.GetConnectionString("FilmeConnection")));
 
 
 // auto mapper serve para mapear um objeto para outro objeto

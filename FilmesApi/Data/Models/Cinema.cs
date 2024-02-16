@@ -12,7 +12,8 @@ public class Cinema
     public string Nome { get; set; }
 
     public int EnderecoId { get; set; }
-    //Explicita que a relação é de 1 para 1
+
+    // Virtual serve para que o Entity Framework Core possa fazer o carregamento preguiçoso (lazy loading)
     public virtual Endereco Endereco { get; set; }
 
 }

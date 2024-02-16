@@ -29,9 +29,10 @@ public class CinemaController : ControllerBase
     }
 
     [HttpGet]
-    public IActionResult ReadCinema()
+    public IEnumerable<ReadCinemaDto> ReadCinema()
     {
-        return Ok(_context.Cinemas);
+        var listaDeCinemas = _mapper.Map<List<ReadCinemaDto>>(_context.Cinemas.ToList());
+        return listaDeCinemas;
     }
 
     [HttpGet("{id}")]
