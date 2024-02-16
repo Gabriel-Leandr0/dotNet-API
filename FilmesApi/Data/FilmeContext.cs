@@ -1,4 +1,4 @@
-using FilmesApi.Models;
+using FilmesApi.Data.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace FilmesApi.Data;
