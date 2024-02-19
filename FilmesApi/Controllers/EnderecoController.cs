@@ -29,9 +29,10 @@ namespace FilmesApi.Controllers
         }
 
         [HttpGet]
-        public IActionResult ReadEndereco()
+        public IEnumerable<ReadEnderecoDto> ReadEndereco()
         {
-            return Ok(_context.Enderecos);
+            var listaDeEnderecos = _mapper.Map<List<ReadEnderecoDto>>(_context.Enderecos.ToList());
+            return listaDeEnderecos;
         }
 
         [HttpPut("{id}")]

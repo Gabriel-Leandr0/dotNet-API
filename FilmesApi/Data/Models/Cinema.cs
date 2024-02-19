@@ -15,5 +15,6 @@ public class Cinema
 
     // Virtual serve para que o Entity Framework Core possa fazer o carregamento preguiçoso (lazy loading)
     public virtual Endereco Endereco { get; set; }
+    public virtual ICollection<Sessao> Sessoes { get; set; }
 
 }

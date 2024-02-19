@@ -24,4 +24,6 @@ public class Filme
     [Required]
     public int duracao { get; set; }
 
+    public virtual ICollection<Sessao> Sessoes { get; set; }
+
 }

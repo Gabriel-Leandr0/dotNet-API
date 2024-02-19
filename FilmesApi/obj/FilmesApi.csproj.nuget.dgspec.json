@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Dev\\dotNet-API\\FilmesApi\\FilmesApi.csproj": {}
+    "C:\\Dev\\dotNet-API\\FilmesApi\\FilmesApi.csproj": {}
   },
   "projects": {
-    "c:\\Dev\\dotNet-API\\FilmesApi\\FilmesApi.csproj": {
+    "C:\\Dev\\dotNet-API\\FilmesApi\\FilmesApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Dev\\dotNet-API\\FilmesApi\\FilmesApi.csproj",
+        "projectUniqueName": "C:\\Dev\\dotNet-API\\FilmesApi\\FilmesApi.csproj",
         "projectName": "FilmesApi",
-        "projectPath": "c:\\Dev\\dotNet-API\\FilmesApi\\FilmesApi.csproj",
+        "projectPath": "C:\\Dev\\dotNet-API\\FilmesApi\\FilmesApi.csproj",
         "packagesPath": "C:\\Users\\GabrielLeandrodeSant\\.nuget\\packages\\",
-        "outputPath": "c:\\Dev\\dotNet-API\\FilmesApi\\obj\\",
+        "outputPath": "C:\\Dev\\dotNet-API\\FilmesApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\GabrielLeandrodeSant\\AppData\\Roaming\\NuGet\\NuGet.Config"
