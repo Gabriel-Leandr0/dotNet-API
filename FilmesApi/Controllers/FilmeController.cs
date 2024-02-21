@@ -21,7 +21,6 @@ public class FilmeController : ControllerBase
         _context = context;
         _mapper = mapper;
     }
-    
 
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
@@ -32,7 +31,7 @@ public class FilmeController : ControllerBase
         //instalar o pacote AutoMapper
 
         Filme filme = _mapper.Map<Filme>(createFilmeDto);
-        
+
         _context.Filmes.Add(filme);
         _context.SaveChanges();
         return CreatedAtAction(nameof(RecuperaFilmesPorId),
@@ -40,19 +39,28 @@ public class FilmeController : ControllerBase
           filme);
     }
 
-[HttpGet]
-[ProducesResponseType(StatusCodes.Status200OK)]
-[ProducesResponseType(StatusCodes.Status404NotFound)]
-public IEnumerable<ReadFilmeDto> RecuperaFilmes([FromQuery] int skip = 0, [FromQuery] int take = 10)
-{
-    var listaDeFilmes = _mapper.Map<List<ReadFilmeDto>>(_context.Filmes.ToList());
-    return listaDeFilmes;
-}
+    [HttpGet]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public IEnumerable<ReadFilmeDto> RecuperaFilmes([FromQuery] int skip = 0,
+        [FromQuery] int take = 50,
+        [FromQuery] string? nomeCinema = null)
+    {
+        if (nomeCinema == null)
+        {
+            return _mapper.Map<List<ReadFilmeDto>>(_context.Filmes.Skip(skip).Take(take).ToList());
+        }
+        //retorna os filmes que estão em cartaz em um cinema específico
+        //.Where() filtra os filmes que estão em cartaz no cinema específico
+        //.Any() verifica se existe algum elemento que satisfaça a condição
+        return _mapper.Map<List<ReadFilmeDto>>(_context.Filmes.Skip(skip).Take(take).Where(filme => filme.Sessoes
+                .Any(sessao => sessao.Cinema.Nome == nomeCinema)).ToList());
 
+    }
 
     [HttpGet("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]    
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public IActionResult RecuperaFilmesPorId(int id)
     {
         var filme = _context.Filmes.FirstOrDefault(filme => filme.Id == id);
@@ -95,9 +103,9 @@ public IEnumerable<ReadFilmeDto> RecuperaFilmes([FromQuery] int skip = 0, [FromQ
 
         var filmeDto = _mapper.Map<UpdateFilmeDto>(filme);
         patchFilme.ApplyTo(filmeDto, ModelState);
-       
+
         if (!TryValidateModel(filmeDto)) return ValidationProblem(ModelState);
-       
+
         _mapper.Map(filmeDto, filme);
         _context.SaveChanges();
         return NoContent();
